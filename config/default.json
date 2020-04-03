@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://pkehr09:spurs1@cluster0-tdegv.mongodb.net/test?retryWrites=true&w=majority",
+    "mlabURI": "mongodb://pkehr09:goalsagainstunited1@ds155213.mlab.com:55213/heroku_xd6h5lm2",
+    "jwtSecret": "tonsofsonheungmingoals"
+}
