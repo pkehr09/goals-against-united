@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import { 
+    Alert,
     Button,
     Modal,
     ModalHeader,
@@ -18,7 +19,8 @@ class VideoModal extends Component {
     state = {
         modal: false,
         url: '',
-        auth: {}
+        auth: {},
+        msg: null
     }
 
     static propTypes = {
@@ -37,25 +39,45 @@ class VideoModal extends Component {
         })
     }
 
-    
-
     onSubmit = (e) => {
         e.preventDefault();
 
         const urlFromForm = this.state.url;
         const { isAuthenticated, user } = this.props.auth;
+        //const youtubeFormat = 
         
         if (urlFromForm && isAuthenticated) {
-            let vidId = /[^=]*$/.exec(urlFromForm)[0] 
-            const newVideo = {
-                videoId: vidId,
-                user: user.name
-            }
-            // Add video via addItem action
-            this.props.addVideo(newVideo);
+            const slicer = urlFromForm.slice(0,17);
+            const shortformat = 'https://youtu.be/';
+            const standardformat = 'https://www.youtu';
 
-            // Close modal
-            this.toggle();    
+            if (slicer === shortformat) {
+                let vidId = /[^/]*$/.exec(urlFromForm)[0];
+                
+                const newVideo = {
+                    videoId: vidId,
+                    user: user.name
+                }
+                // Add video via addItem action
+                this.props.addVideo(newVideo);
+    
+                // Close modal
+                this.toggle(); 
+            } else if (slicer === standardformat) {
+                let vidId = /[^=]*$/.exec(urlFromForm)[0];
+                
+                const newVideo = {
+                    videoId: vidId,
+                    user: user.name
+                }
+                // Add video via addItem action
+                this.props.addVideo(newVideo);
+    
+                // Close modal
+                this.toggle(); 
+            } else {
+                alert(`Invalid URL. Please make sure your goal begins with 'https' and is a valid YouTube or YouTube-shortened link.`);
+            }    
         }    
     }
 

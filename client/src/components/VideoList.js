@@ -53,7 +53,7 @@ class VideoList extends Component {
         const { videos } = this.props.video;
 
         return (
-            <Container className='container-fluid'>
+            <Container className='w-100'>
                 <TransitionGroup className='video-list'>
                     {videos.map(({ _id, videoId, user, date }) => (
                         <CSSTransition key={_id} timeout={500} classNames='fade'>
