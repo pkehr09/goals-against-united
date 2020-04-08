@@ -26,14 +26,14 @@ class VideoList extends Component {
         this.props.deleteVideo(id);
     }
 
-    copyToClipboard = (video) => {
+    copyToClipboard = (video, user) => {
         var dummy = document.createElement("textarea");
         // to avoid breaking orgain page when copying more words
         // cant copy when adding below this code
         // dummy.style.display = 'none'
         document.body.appendChild(dummy);
         //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
-        let prependYouTube = 'Check out this goal against United (via Goals Against United) https://www.youtube.com/watch?v='
+        let prependYouTube = `Check out this goal against United posted by user ${user} (via Goals Against United) https://www.youtube.com/watch?v=`
         dummy.value = prependYouTube + video;
         dummy.select();
         document.execCommand("copy");
@@ -69,7 +69,7 @@ class VideoList extends Component {
                             <Button
                                 className='mb-3 mt-2'
                                 color='secondary'
-                                onClick={this.copyToClipboard.bind(this, videoId)}
+                                onClick={this.copyToClipboard.bind(this, videoId, user)}
                                 >Copy To Clipboard</Button>
                             
                             

@@ -60,6 +60,18 @@ router.post('/', (req, res) => {
             })
         })
 });
+
+/*router.get('/:user', (req, res) => {
+    const
+
+    User.findOne({ user })
+        .then(user => user.remove())
+})
+
+// Delete user
+router.delete('/:user', (req, res) => {
+    User.find
+})*/
   
 
 module.exports = router;
