@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { 
-   Button,
-   Modal,
-   ModalHeader,
-   ModalBody,
-   Form,
-   FormGroup,
-   Label,
-   Input,
-   NavLink,
-   Alert
-} from 'reactstrap';
+import { Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    NavLink,
+    Alert } from 'reactstrap';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
@@ -30,6 +29,7 @@ class LoginModal extends Component {
         login: PropTypes.func.isRequired,
         clearErrors: PropTypes.func.isRequired
     };
+
 
     componentDidUpdate(prevProps) {
         const { error, isAuthenticated } = this.props;
@@ -52,6 +52,8 @@ class LoginModal extends Component {
     toggle = () => {
         // Clear errors
         this.props.clearErrors();
+        //const [show, setShow] = useState(false);
+
         this.setState({
             modal: !this.state.modal
         });
@@ -74,14 +76,12 @@ class LoginModal extends Component {
         // Attempt to login
         this.props.login(user);
 
-        //close Modal
-        //this.toggle();
     }
 
     render () {
         return (
             <div>
-                <NavLink onClick={this.toggle} href="#">Login</NavLink>
+                <NavLink className='login' onClick={this.toggle} href="#">Login</NavLink>
 
                 <Modal
                   isOpen={this.state.modal}
@@ -120,6 +120,18 @@ class LoginModal extends Component {
                         </Form>
                     </ModalBody>
                     </Modal>
+
+
+
+
+
+
+
+
+
+
+
+                
             </div>
         );
     } 

@@ -20,6 +20,11 @@ class App extends Component {
       <Provider store={store}>
         <div text-align='center'>
           <AppNavBar />
+          <div className='face-div'>
+                      <img src="http://www.petekehr.com/faces3.gif"
+                           alt=""
+                           className='faces'/>
+                      </div>
           <Container>
             <VideoModal />
             <VideoList />

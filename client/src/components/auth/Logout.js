@@ -14,7 +14,7 @@ class LogoutModal extends Component {
             <div>
                 <Fragment>
                     <NavLink
-                        onClick={this.props.logout} href='#'>
+                        className='logout' onClick={this.props.logout} href='#'>
                     Logout</NavLink>
                 </Fragment>
             </div>

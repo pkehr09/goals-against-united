@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
 import YouTube from 'react-youtube';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import moment from 'moment';
@@ -42,8 +42,8 @@ class VideoList extends Component {
     
     render() {
         const opts = {
-            height: '335',
-            width: '550',
+            height: '450',
+            width: '800',
             playerVars: { // https://developers.google.com/youtube/player_parameters
               autoplay: 0
             }
@@ -53,41 +53,49 @@ class VideoList extends Component {
         const { videos } = this.props.video;
 
         return (
-            <Container className='w-100'>
+            <div className="video-list">
+            <Container>
                 <TransitionGroup className='video-list'>
                     {videos.map(({ _id, videoId, user, date }) => (
                         <CSSTransition key={_id} timeout={500} classNames='fade'>
-                            <div className='mt-5'>
+                            <div className='youtube'>
                             <YouTube
-                                className='mb-2 mt-3'
                                 videoId={videoId}
                                 opts={opts}
-                                onReady={this._onReady} />
-                        <div className='h6'>
-                        Added by {user} on {moment(date).format('MMMM Do YYYY, h:mm a')}
-                        </div>
-                            <Button
-                                className='mb-3 mt-2'
-                                color='secondary'
+                                className='video'
+                                onReady={this._onReady} />   
+                            <Row className='desc-row'>
+                            <Col sm='3' xs='2'>
+                                <Button
+                                outline color='secondary'
+                                className='copy-btn'
                                 onClick={this.copyToClipboard.bind(this, videoId, user)}
                                 >Copy To Clipboard</Button>
-                            
-                            
+                            </Col>
+                            <Col sm='6' xs='8'>
+                                <div  className='goal-desc'>
+                                    Added by {user} on {moment(date).format('MMMM Do YYYY, h:mm a')}
+                                </div>
+                            </Col>
+                            <Col sm='3' xs='2'>
                             { this.props.isAuthenticated ? (
-                                <div className=''>
+                                <div>
                                     <Button
-                                        color='danger'
+                                        outline color='danger'
                                         size='md'
-                                        className='remove-btn'
+                                        className='delete-btn'
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                     >Delete</Button>
                                 </div>
-                            ) : null }   
+                            ) : null }
+                            </Col>
+                            </Row>
                             </div>
                         </CSSTransition>
                     ))}
                 </TransitionGroup>
             </Container>
+        </div>
         );
         
     }

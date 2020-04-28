@@ -35,11 +35,6 @@ class AppNavBar extends Component {
         const authLinks = (
             <Fragment>
                 <NavItem>
-                    <span className='navbar-text mr-3'>
-                        <strong> { user ? ` Welcome ${user.name}!` : ''}</strong>
-                    </span>
-                </NavItem>
-                <NavItem>
                     <LogoutModal />
                 </NavItem>
             </Fragment>
@@ -56,12 +51,16 @@ class AppNavBar extends Component {
 
         return (
             <div>
-                <Navbar dark expand='sm' className='mb-5 bg-danger text-white'>
+                <Navbar className='mb-5' color="white" light expand="md">
                     <Container>
                         <NavbarBrand
                             href='/'
-                            className='font-weight-bold'
-                        >Goals Against United</NavbarBrand>
+                        >
+                        <img
+                        alt=""
+                        src="http://www.petekehr.com/GAU_LOGO.png"
+                        className="logo"
+                      />{''}</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className='ml-auto' navbar>

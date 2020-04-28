@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import { 
-    Alert,
     Button,
     Modal,
     ModalHeader,
@@ -83,25 +82,27 @@ class VideoModal extends Component {
 
     render() {
 
-        //const datdude = 'http://petekehr.com/datdude.png';
+        const { user } = this.props.auth
         
         return (
-            <div>
+            <div className="text-center">
                 {this.props.isAuthenticated ? ( 
+                    <div className='splash-msg'>
+                    { user ? (<div className='welcome'>Welcome {user.name}!</div>) : ''}
                     <Button
-                        color='warning'
+                        className='add-btn'
+                        outline color='warning'
                         style={{marginBottom: '2rem'}}
-                        size='mdd'
                         onClick={this.toggle}
                         >Add A Goal Against United
-                    </Button> ) : (
-                    <h4 className='mb-3 ml-4'>Please log in to add a goal</h4>)}
+                    </Button> </div>) : (
+                    <div className='please-login'>Please log in to add a goal</div>)}
 
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
                 >
-                    <ModalHeader toggle={this.toggle}>Add A Goal Against United</ModalHeader>
+                    <ModalHeader toggle={this.toggle} className='modal-header'>Add A Goal Against United</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
@@ -114,7 +115,7 @@ class VideoModal extends Component {
                                     onChange={this.onChange} 
                                 />
                                 <Button
-                                    color='danger'
+                                    outline color='danger'
                                     style={{marginTop: '2rem'}}
                                     block
                                     >Add Goal</Button>
